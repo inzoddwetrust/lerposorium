@@ -23,7 +23,8 @@ before do
 end
 
 get '/' do
-	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"
+	@content = @db.execute 'SELECT * FROM Posts ORDER BY id DESC'
+	erb :index
 end
 
 get '/new' do
@@ -33,10 +34,11 @@ end
 post '/new' do
 	@new_post = params[:new_post]
 
-	if @new_post.length<=0
+	if @new_post.empty?
 		@error = "Enter your post"
 		return erb :new
 	end
 
+	@db.execute 'INSERT INTO Posts (created_date, content) VALUES (datetime(), ?)', [@new_post]
 	erb "#{@new_post.gsub("\n", "<br>")}"
 end

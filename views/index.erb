@@ -1,0 +1,10 @@
+<h2>Latests posts:</h2>
+
+<%@content.each do |post|%>
+<div>
+
+  <h3><%=post['id']%></h3>
+  <label><%=post['created_date']%></label>
+  <p><%=post['content'].gsub("\n", "<br>")%></p>
+</div>
+<%end%>
