@@ -32,5 +32,11 @@ end
 
 post '/new' do
 	@new_post = params[:new_post]
+
+	if @new_post.length<=0
+		@error = "Enter your post"
+		return erb :new
+	end
+
 	erb "#{@new_post.gsub("\n", "<br>")}"
 end
