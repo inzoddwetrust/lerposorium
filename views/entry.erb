@@ -6,10 +6,20 @@
     <p><%=post['content']%></p>
     <hr>
   </div>
-<h4>Comments:</h4>
-  <form action="/entry/<%=@post_id%>" method="POST" role="form">
-    <textarea name="new_comment" class="form-control" rows="6" style="width: 400px" placeholder="Add your comment"></textarea>
-    <br>
-    <button type="submit" class="btn btn-primary">Yarrr!</button>
-  </form>
 <%end%>
+
+<h4>Comments:</h4>
+
+<%@post_comments.each do |post|%>
+  <div>
+    <p><%=post['content']%></p>
+    <p><%=post['created_date']%></p>
+    <hr>
+  </div>
+<%end%>
+
+<form action="/entry/<%=@post_id%>" method="POST" role="form">
+  <textarea name="new_comment" class="form-control" rows="6" style="width: 400px" placeholder="Add your comment"></textarea>
+  <br>
+  <button type="submit" class="btn btn-primary">Yarrr!</button>
+</form>
