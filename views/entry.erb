@@ -7,4 +7,10 @@
     <p><%=post['content']%></p>
     <hr>
   </div>
+
+  <form action="/entry/<%=@post_id%>" method="POST" role="form">
+    <textarea name="new_comment" class="form-control" rows="6" style="width: 400px" placeholder="Add your comment"></textarea>
+    <br>
+    <button type="submit" class="btn btn-primary">Yarrr!</button>
+  </form>
 <%end%>
