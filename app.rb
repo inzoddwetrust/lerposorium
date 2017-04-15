@@ -31,14 +31,18 @@ get '/new' do
   erb :new
 end
 
+get '/entry/:post_id' do
+	post_id=params[:post_id]
+	erb "#{post_id}"
+end
+
 post '/new' do
-	@new_post = params[:new_post]
+	@new_post = params[:new_post].gsub("\n", "<br>")
 
 	if @new_post.empty?
 		@error = "Enter your post"
-		return erb :new
 	end
 
 	@db.execute 'INSERT INTO Posts (created_date, content) VALUES (datetime(), ?)', [@new_post]
-	erb "#{@new_post.gsub("\n", "<br>")}"
+	redirect to '/'
 end

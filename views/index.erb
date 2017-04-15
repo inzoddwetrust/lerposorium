@@ -1,10 +1,11 @@
-<h2>Latests posts:</h2>
+<h2>Latests posts:</h2><br><br>
 
 <%@content.each do |post|%>
-<div>
-
-  <h3><%=post['id']%></h3>
-  <label><%=post['created_date']%></label>
-  <p><%=post['content'].gsub("\n", "<br>")%></p>
-</div>
+  <div>
+    <!-- <h3><%=post['id']%></h3> -->
+    <label><%=post['created_date']%></label>
+    <p><%=post['content']%></p>
+    <a href="/entry/<%=post['id']%>">Comments</a>
+    <hr>
+  </div>
 <%end%>
