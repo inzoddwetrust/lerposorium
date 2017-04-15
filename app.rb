@@ -34,16 +34,33 @@ end
 get '/entry/:post_id' do
 	@post_id=params[:post_id]
 	@content = @db.execute 'SELECT * FROM Posts where id=?', [@post_id]
+
 	erb :entry
 end
 
-post '/new' do
-	@new_post = params[:new_post].gsub("\n", "<br>")
+post '/entry/:post_id' do
+	@post_id=params[:post_id]
+	@content = @db.execute 'SELECT * FROM Posts where id=?', [@post_id]
 
-	if @new_post.empty?
-		@error = "Enter your post"
+	new_comment = params[:new_comment].gsub("\n", "<br>")
+
+	if new_comment.empty?
+		@error = "Enter your comment"
+		return erb :entry
 	end
 
-	@db.execute 'INSERT INTO Posts (created_date, content) VALUES (datetime(), ?)', [@new_post]
+	erb :entry
+	# erb "#{params[:new_comment]}"
+end
+
+post '/new' do
+	new_post = params[:new_post].gsub("\n", "<br>")
+
+	if new_post.empty?
+		@error = "Enter your post"
+		return erb :new
+	end
+
+	@db.execute 'INSERT INTO Posts (created_date, content) VALUES (datetime(), ?)', [new_post]
 	redirect to '/'
 end

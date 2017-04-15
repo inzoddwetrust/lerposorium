@@ -2,12 +2,11 @@
 
 <%@content.each do |post|%>
   <div>
-    <!-- <h3><%=post['id']%></h3> -->
     <label><%=post['created_date']%></label>
     <p><%=post['content']%></p>
     <hr>
   </div>
-
+<h4>Comments:</h4>
   <form action="/entry/<%=@post_id%>" method="POST" role="form">
     <textarea name="new_comment" class="form-control" rows="6" style="width: 400px" placeholder="Add your comment"></textarea>
     <br>
