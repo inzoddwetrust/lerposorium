@@ -1,19 +1,19 @@
 <h2>Post details:</h2><br><br>
 
 <div>
-  <label><%=@content[0]['created_date']%></label>
-  <p><%=@content[0]['content']%></p>
+  <span style="font-size: 75%; color: #999"><%=@content[0]['created_date']%></span>
+  <p class="lead"><%=@content[0]['content']%></p>
   <hr>
 </div>
 
 <h4>Comments:</h4>
 
-<%@post_comments.each do |post|%>
-  <div>
-    <p><%=post['content']%></p>
-    <p><%=post['created_date']%></p>
+<%@post_comments.each do |comment|%>
+    <p><%=comment['content']%>
+    <br />
+    <span style="font-size: 50%; color: #999"><%=comment['created_date']%></span>
+    </p>
     <hr>
-  </div>
 <%end%>
 
 <form action="/entry/<%=@post_id%>" method="POST" role="form">

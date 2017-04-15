@@ -2,8 +2,7 @@
 
 <%@content.each do |post|%>
   <div>
-    <!-- <h3><%=post['id']%></h3> -->
-    <label><%=post['created_date']%></label>
+    <p style="font-size: 75%; color: #999"><%=post['created_date']%></p>
     <p><%=post['content']%></p>
     <a href="/entry/<%=post['id']%>">Comments</a>
     <hr>
