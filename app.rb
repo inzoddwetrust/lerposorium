@@ -11,7 +11,7 @@ end
 def prepare_enrty
 	@post_id=params[:post_id]
 	@content = @db.execute 'SELECT * FROM Posts where id=?', [@post_id]
-	@post_comments = @db.execute 'SELECT * FROM Comments where post_id=?', [@post_id]
+	@post_comments = @db.execute 'SELECT * FROM Comments where post_id=? ORDER BY created_date DESC', [@post_id]
 end
 
 configure do
