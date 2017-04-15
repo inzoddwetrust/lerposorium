@@ -32,8 +32,9 @@ get '/new' do
 end
 
 get '/entry/:post_id' do
-	post_id=params[:post_id]
-	erb "#{post_id}"
+	@post_id=params[:post_id]
+	@content = @db.execute 'SELECT * FROM Posts where id=?', [@post_id]
+	erb :entry
 end
 
 post '/new' do

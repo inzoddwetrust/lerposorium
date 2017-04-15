@@ -1,0 +1,10 @@
+<h2>Post details:</h2><br><br>
+
+<%@content.each do |post|%>
+  <div>
+    <!-- <h3><%=post['id']%></h3> -->
+    <label><%=post['created_date']%></label>
+    <p><%=post['content']%></p>
+    <hr>
+  </div>
+<%end%>
